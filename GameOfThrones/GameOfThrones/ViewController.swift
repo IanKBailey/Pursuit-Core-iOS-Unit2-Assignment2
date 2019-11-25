@@ -10,11 +10,32 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var episodes = [[GOTEpisode]]()
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    
+    
+    
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-  }
+    
 
 
 }
 
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return episodes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return
+    }
+    
+    
+}
