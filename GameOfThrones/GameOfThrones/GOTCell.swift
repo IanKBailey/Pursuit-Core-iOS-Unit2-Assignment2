@@ -15,5 +15,10 @@ class GOTCell: UITableViewCell {
     @IBOutlet weak var epSeaLabel: UILabel!
     
     
-    
+    func configureCell(for episode: GOTEpisode) {
+        epCellImage.image = UIImage(named: episode.mediumImageID.description)
+        nameLabel.text = episode.name
+        epSeaLabel.text = ("S: \(episode.season) Ep: \(episode.number)")
+        
+    }
 }
