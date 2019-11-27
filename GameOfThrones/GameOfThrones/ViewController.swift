@@ -75,7 +75,7 @@ extension ViewController: UITableViewDataSource {
         episodes.count
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return episodes[section].first?.season.description
+        return "Season \(episodes[section].first?.season.description ?? "")"
     }
     
     
