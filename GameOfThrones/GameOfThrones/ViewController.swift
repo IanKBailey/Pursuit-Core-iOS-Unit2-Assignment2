@@ -27,7 +27,19 @@ class ViewController: UIViewController {
     
     
 }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailViewController = segue.destination as? DetailViewController, let indexPath = tableView.indexPathForSelectedRow else {fatalError("failed to segue")}
+        
+        let episode = episodes[indexPath.section][indexPath.row]
+        
+        detailViewController.episodes = episode
+        
+    }
+    
+    
+    
+    
+    
 }
 
 extension ViewController: UITableViewDataSource {
@@ -36,10 +48,24 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       guard  let cell = tableView.dequeueReusableCell(withIdentifier: "episodeCellLeft", for: indexPath) as? GOTCell else {fatalError("couldn't dequeue a cell")}
+        
+        var cell: GOTCell
+        
+        if indexPath.section % 2 == 0 {
+            guard let gotCell = tableView.dequeueReusableCell(withIdentifier: "episodeCellLeft", for: indexPath) as? GOTCell else {fatalError("Couldn't dequeue episodeCellLeft")
+                
+            }
+            cell = gotCell
+        } else {
+            guard let gotCell = tableView.dequeueReusableCell(withIdentifier: "episodeCellRight", for: indexPath) as? GOTCell else {fatalError("Couldn't dequeue episodeCellRight")
+                
+            }
+            cell = gotCell
+        
+        }
+        
         
         let episode = episodes[indexPath.section][indexPath.row]
-        
         cell.configureCell(for: episode)
         
         return cell
